@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Document Mismatch Detector</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>&#128203;</text></svg>">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>Document Mismatch Detector</h1>
+  <p class="sub">
+    Paste a few documents as <code>KEY: VALUE</code> lines. Every field that appears on
+    more than one of them gets compared, and the disagreements come back live.
+  </p>
+</header>
+
+<main>
+  <section class="panel">
+    <h2><span class="step">1</span> The documents</h2>
+    <div id="docs" class="docs"></div>
+    <div class="row">
+      <button class="ghost" id="add">+ Add a document</button>
+      <button class="ghost" id="sample">Load the sample</button>
+      <button class="ghost" id="clear">Clear</button>
+    </div>
+    <button class="primary" id="submit">Compare them</button>
+    <p class="error hidden" id="error"></p>
+  </section>
+
+  <section class="panel">
+    <h2><span class="step">2</span> Watching it run</h2>
+    <p class="hint" id="idle">Nothing submitted yet.</p>
+    <div class="hidden" id="live">
+      <div class="row case-line">
+        <code id="case-id"></code>
+        <span class="pill" id="status">queued</span>
+      </div>
+      <ol class="trail" id="trail"></ol>
+    </div>
+  </section>
+
+  <section class="panel hidden" id="report-panel">
+    <h2><span class="step">3</span> The answer</h2>
+    <div id="verdict" class="verdict"></div>
+    <p id="summary" class="summary"></p>
+
+    <div id="mismatches"></div>
+
+    <h3>Fields that agreed</h3>
+    <p id="matched" class="matched"></p>
+
+    <h3>What was read</h3>
+    <div id="documents" class="documents"></div>
+
+    <details>
+      <summary>The raw <code>CaseRecord</code> the socket pushed</summary>
+      <pre id="raw"></pre>
+    </details>
+  </section>
+</main>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
